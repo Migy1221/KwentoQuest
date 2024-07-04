@@ -72,7 +72,7 @@
     <div class="container">
         <div class="card verification-card">
             <h2 class="text-center mb-4">Age Verification</h2>
-            <form id="ageVerificationForm" action="verify_age.php" method="post">
+            <form id="ageVerificationForm">
                 <div class="row mb-3">
                     <div class="col">
                         <label for="daySelect" class="form-label">Day:</label>
@@ -154,32 +154,32 @@
             ageVerificationForm.addEventListener('submit', function (event) {
                 event.preventDefault(); // Prevent default form submission
 
-                var formData = new FormData(ageVerificationForm);
+                var day = document.getElementById('daySelect').value;
+                var month = document.getElementById('monthSelect').value;
+                var year = document.getElementById('yearSelect').value;
 
-                fetch('verify_age.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.error) {
-                        // Show error modal
-                        showErrorModal(data.error);
-                    } else {
-                        // Redirect to homepage on successful verification
-                        window.location.href = 'home.html'; // Redirect to your homepage
-                    }
-                })
-                .catch(error => {
-                    console.error('There was an error!', error);
-                    // Handle network errors or unexpected server responses
-                    showErrorModal('You must be 18 or above in order to enter this site.');
-                });
+                // Validate selected date
+                if (day === "" || month === "" || year === "") {
+                    showErrorModal("Please select a valid date.");
+                    return;
+                }
+
+                var birthDate = new Date(year, month - 1, day);
+                var today = new Date();
+                var age = today.getFullYear() - birthDate.getFullYear();
+                var monthDifference = today.getMonth() - birthDate.getMonth();
+                
+                if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+
+                if (age >= 18) {
+                    // Redirect to homepage on successful verification
+                    window.location.href = 'home.html';
+                } else {
+                    // Show error modal
+                    showErrorModal("You must be 18 or above in order to enter this site.");
+                }
             });
 
             // Function to show error modal
