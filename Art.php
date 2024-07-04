@@ -134,11 +134,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="http://localhost/KwentoQuest/Content/Home.php">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="http://localhost/KwentoQuest/Content/Home.php">Trailer</a></li>
-                    <li class="nav-item"><a class="nav-link" href="http://localhost/KwentoQuest/Content/Home.php">Characters</a></li>
-                    <li class="nav-item"><a class="nav-link" href="http://localhost/KwentoQuest/Content/Home.php">Gameplay</a></li>
-                    <li class="nav-item"><a class="nav-link" href="http://localhost/KwentoQuest/Content/Home.php">Install</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://localhost/KwentoQuest/home.php">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://localhost/KwentoQuest/home.php">Trailer</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://localhost/KwentoQuest/home.php">Characters</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://localhost/KwentoQuest/home.php">Gameplay</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://localhost/KwentoQuest/home.php">Install</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="moreDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             More
