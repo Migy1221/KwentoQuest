@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kwento Quest - News</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: white; /* Default font color */
+            background-color: #111; /* Background color for the entire page */
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        .news-section {
+            background-color: #111; /* Background color for News section */
+            padding: 60px 0; /* Padding for News section */
+        }
+
+        .news-section h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .news-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .news-item {
+            border: 2px solid #333;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .news-item img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        .news-item h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .news-item p {
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .news-gallery {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Lightbox CSS */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .lightbox-content {
+            position: relative;
+            margin: auto;
+            padding: 20px;
+            background-color: #222;
+            width: 80%;
+            max-width: 700px;
+            color: white;
+        }
+
+        .lightbox-content h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .lightbox-content p {
+            font-size: 1rem;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            color: #fff;
+            font-size: 35px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="http://localhost/KwentoQuest/img/kq_logo_1.png" alt="Logo" style="height: 30px; margin-right: 10px;">
+                <span>Kwento Quest</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="http://localhost/KwentoQuest/Content/Home.php">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://localhost/KwentoQuest/Content/Home.php">Trailer</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://localhost/KwentoQuest/Content/Home.php">Characters</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://localhost/KwentoQuest/Content/Home.php">Gameplay</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://localhost/KwentoQuest/Content/Home.php">Install</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="moreDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            More
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="moreDropdown">
+                            <a class="dropdown-item" href="Art.php">Art</a>
+                            <a class="dropdown-item" href="Aboutus.php">About Us</a>
+                            <a class="dropdown-item" href="contact.php">Contact</a>
+                            <a class="dropdown-item" href="news.php">News</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- News Section -->
+    <div class="content">
+        <section id="news" class="news-section">
+            <div class="container text-center">
+                <h1>News</h1>
+                <div class="news-gallery">
+                    <div class="news-item">
+                        <a href="#" onclick="openLightbox('Beta Version 1 Live!', 'The beta version of the game is now live!')" data-title="Beta Version 1">
+                            <img src="http://localhost/KwentoQuest/img/BG.png" alt="News 1">
+                            <h2>Beta Version 1 Live!</h2>
+                        </a>
+                        <p>The beta version is now availbe to download!</p>
+                    </div>
+                    <div class="news-item">
+                        <a href="#" onclick="openLightbox('Update Version 1.21', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut vestibulum ligula. Vestibulum consequat tempor eros, fermentum tristique diam.')" data-title="Update Version 1.21">
+                            <img src="path/to/image1.jpg" alt="News 1">
+                            <h2>UPDATE VERSION 1.21 ></h2>
+                        </a>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut vestibulum ligula. Vestibulum consequat tempor eros, fermentum tristique diam.</p>
+                    </div>
+                    <div class="news-item">
+                        <a href="#" onclick="openLightbox('Update Version 1.21', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut vestibulum ligula. Vestibulum consequat tempor eros, fermentum tristique diam.')" data-title="Update Version 1.21">
+                            <img src="path/to/image1.jpg" alt="News 1">
+                            <h2>UPDATE VERSION 1.21 ></h2>
+                        </a>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut vestibulum ligula. Vestibulum consequat tempor eros, fermentum tristique diam.</p>
+                    </div>
+                    <div class="news-item">
+                        <a href="#" onclick="openLightbox('Update Version 1.21', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut vestibulum ligula. Vestibulum consequat tempor eros, fermentum tristique diam.')" data-title="Update Version 1.21">
+                            <img src="path/to/image1.jpg" alt="News 1">
+                            <h2>UPDATE VERSION 1.21 ></h2>
+                        </a>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut vestibulum ligula. Vestibulum consequat tempor eros, fermentum tristique diam.</p>
+                    </div>
+                    <div class="news-item">
+                        <a href="#" onclick="openLightbox('Update Version 1.21', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut vestibulum ligula. Vestibulum consequat tempor eros, fermentum tristique diam.')" data-title="Update Version 1.21">
+                            <img src="path/to/image1.jpg" alt="News 1">
+                            <h2>UPDATE VERSION 1.21 ></h2>
+                        </a>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut vestibulum ligula. Vestibulum consequat tempor eros, fermentum tristique diam.</p>
+                    </div>
+                    <div class="news-item">
+                        <a href="#" onclick="openLightbox('Update Version 1.21', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut vestibulum ligula. Vestibulum consequat tempor eros, fermentum tristique diam.')" data-title="Update Version 1.21">
+                            <img src="path/to/image1.jpg" alt="News 1">
+                            <h2>UPDATE VERSION 1.21 ></h2>
+                        </a>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut vestibulum ligula. Vestibulum consequat tempor eros, fermentum tristique diam.</p>
+                    </div>
+                    <div class="news-item">
+                        <a href="#" onclick="openLightbox('Update Version 1.21', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut vestibulum ligula. Vestibulum consequat tempor eros, fermentum tristique diam.')" data-title="Update Version 1.21">
+                            <img src="path/to/image1.jpg" alt="News 1">
+                            <h2>UPDATE VERSION 1.21 ></h2>
+                        </a>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut vestibulum ligula. Vestibulum consequat tempor eros, fermentum tristique diam.</p>
+                    </div>
+                    <div class="news-item">
+                        <a href="#" onclick="openLightbox('Update Version 1.21', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut vestibulum ligula. Vestibulum consequat tempor eros, fermentum tristique diam.')" data-title="Update Version 1.21">
+                            <img src="path/to/image1.jpg" alt="News 1">
+                            <h2>UPDATE VERSION 1.21 ></h2>
+                        </a>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut vestibulum ligula. Vestibulum consequat tempor eros, fermentum tristique diam.</p>
+                    </div>
+                    <div class="news-item">
+                        <a href="#" onclick="openLightbox('Update Version 1.21', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut vestibulum ligula. Vestibulum consequat tempor eros, fermentum tristique diam.')" data-title="Update Version 1.21">
+                            <img src="path/to/image1.jpg" alt="News 1">
+                            <h2>UPDATE VERSION 1.21 ></h2>
+                        </a>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut vestibulum ligula. Vestibulum consequat tempor eros, fermentum tristique diam.</p>
+                    </div>
+                    <!-- Repeat the above block for each news item -->
+                </div>
+            </div>
+            
+        </section>
+    </div>
+    
+
+    <!-- Lightbox -->
+    <div id="myLightbox" class="lightbox">
+        <span class="close">&times;</span>
+        <div class="lightbox-content">
+            <h2 id="lightboxTitle"></h2>
+            <p id="lightboxDescription"></p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Kwento Quest. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Lightbox JS -->
+    <script>
+        // Get the lightbox elements
+        var lightbox = document.getElementById("myLightbox");
+        var lightboxTitle = document.getElementById("lightboxTitle");
+        var lightboxDescription = document.getElementById("lightboxDescription");
+        var closeBtn = document.getElementsByClassName("close")[0];
+
+        // Open the lightbox
+        function openLightbox(title, description) {
+            lightbox.style.display = "block";
+            lightboxTitle.innerText = title;
+            lightboxDescription.innerText = description;
+        }
+
+        // Close the lightbox
+        closeBtn.onclick = function() {
+            lightbox.style.display = "none";
+        }
+
+        // Close the lightbox when clicking outside the content
+        window.onclick = function(event) {
+            if (event.target == lightbox) {
+                lightbox.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

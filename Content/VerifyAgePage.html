@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Verification</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons (optional) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('http://localhost/KwentoQuest/img/MainBG.png'); /* Replace with your accessible image path */
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .verification-card {
+            width: 100%; /* Full width on small screens */
+            max-width: 600px; /* Maximum width */
+            padding: 20px;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0); /* Adjust the alpha value (0.8) to control transparency */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: auto; /* Center the panel horizontally */
+        }
+        .verification-card h2 {
+            color: #ffffff; /* Change to your desired text color */
+            font-weight: bold;
+            text-shadow: -1px -1px 0 #000,  
+                         1px -1px 0 #000,
+                        -1px  1px 0 #000,
+                         1px  1px 0 #000; /* Text outline effect */
+            padding: 8px; /* Padding around the text */
+        }
+        .form-label {
+            color: #ffffff; /* Label text color */
+            font-weight: bold; /* Make labels bold */
+            font-size: 20px; /* Adjust label font size */
+            text-shadow: -1px -1px 0 #000,  
+                         1px -1px 0 #000,
+                        -1px  1px 0 #000,
+                         1px  1px 0 #000; /* Text outline effect */
+            padding: 8px; /* Padding around the text */
+        }
+        .btn-primary {
+            background-color: transparent; /* Transparent background */
+            border: 2px solid #ffffff; /* White outline */
+            color: #ffffff; /* Text color */
+            font-weight: bold; /* Make the text bold */
+            text-shadow: -1px -1px 0 #000,  
+                         1px -1px 0 #000,
+                        -1px  1px 0 #000,
+                         1px  1px 0 #000; /* Text outline effect */
+            padding: 10px 20px; /* Padding inside the button */
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+            font-size: 20px;
+        }
+
+        .btn-primary:hover {
+            background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent background on hover */
+            color: #000000; /* Text color on hover */
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card verification-card">
+            <h2 class="text-center mb-4">Age Verification</h2>
+            <form id="ageVerificationForm" action="verify_age.php" method="post">
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="daySelect" class="form-label">Day:</label>
+                        <select id="daySelect" name="day" class="form-select" required>
+                            <option value="">Day</option>
+                            <!-- Options will be dynamically populated with JavaScript -->
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="monthSelect" class="form-label">Month:</label>
+                        <select id="monthSelect" name="month" class="form-select" required>
+                            <option value="">Month</option>
+                            <!-- Options will be dynamically populated with JavaScript -->
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="yearSelect" class="form-label">Year:</label>
+                        <select id="yearSelect" name="year" class="form-select" required>
+                            <option value="">Year</option>
+                            <!-- Options will be dynamically populated with JavaScript -->
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Enter</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JavaScript (optional, for components that require it) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JavaScript for date dropdowns and form submission handling -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Function to populate days dynamically
+            function populateDays() {
+                var daySelect = document.getElementById('daySelect');
+                daySelect.innerHTML = '<option value="">Day</option>';
+                for (var day = 1; day <= 31; day++) {
+                    var option = document.createElement('option');
+                    option.value = day;
+                    option.textContent = day;
+                    daySelect.appendChild(option);
+                }
+            }
+
+            // Function to populate months dynamically
+            function populateMonths() {
+                var monthSelect = document.getElementById('monthSelect');
+                monthSelect.innerHTML = '<option value="">Month</option>';
+                var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                months.forEach(function (month, index) {
+                    var option = document.createElement('option');
+                    option.value = index + 1; // Month index starts from 0
+                    option.textContent = month;
+                    monthSelect.appendChild(option);
+                });
+            }
+
+            // Function to populate years dynamically (adjust range as needed)
+            function populateYears() {
+                var yearSelect = document.getElementById('yearSelect');
+                yearSelect.innerHTML = '<option value="">Year</option>';
+                var currentYear = new Date().getFullYear();
+                for (var year = currentYear; year >= 1900; year--) {
+                    var option = document.createElement('option');
+                    option.value = year;
+                    option.textContent = year;
+                    yearSelect.appendChild(option);
+                }
+            }
+
+            // Call functions to populate dropdowns on page load
+            populateDays();
+            populateMonths();
+            populateYears();
+
+            // Handle form submission
+            var ageVerificationForm = document.getElementById('ageVerificationForm');
+            ageVerificationForm.addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent default form submission
+
+                var formData = new FormData(ageVerificationForm);
+
+                fetch('verify_age.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.error) {
+                        // Show error modal
+                        showErrorModal(data.error);
+                    } else {
+                        // Redirect to homepage on successful verification
+                        window.location.href = 'Home.php'; // Redirect to your homepage
+                    }
+                })
+                .catch(error => {
+                    console.error('There was an error!', error);
+                    // Handle network errors or unexpected server responses
+                    showErrorModal('You must be 18 or above in order to enter this site.');
+                });
+            });
+
+            // Function to show error modal
+            function showErrorModal(message) {
+                var modalContent = `
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Error</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>${message}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                var modalContainer = document.createElement('div');
+                modalContainer.classList.add('modal', 'fade');
+                modalContainer.innerHTML = modalContent;
+                document.body.appendChild(modalContainer);
+                var modal = new bootstrap.Modal(modalContainer);
+                modal.show();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kwento Quest - Artworks</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: white; /* Default font color */
+            background-color: #111; /* Background color for the entire page */
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        .artworks-section {
+            background-color: #111; /* Background color for Artworks section */
+            padding: 60px 0; /* Padding for Artworks section */
+        }
+
+        .artworks-section h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .artworks-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .artworks-gallery img {
+            width: 300px; /* Set the desired width */
+            height: 300px; /* Set the desired height */
+            object-fit: cover; /* Ensure images are covered */
+            border: 2px solid #333;
+        }
+
+        @media (max-width: 768px) {
+            .artworks-gallery {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Lightbox CSS */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .lightbox-content {
+            position: relative;
+            margin: auto;
+            padding: 0;
+            width: 80%;
+            max-width: 700px;
+        }
+
+        .lightbox-content img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            color: #fff;
+            font-size: 35px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="http://localhost/KwentoQuest/img/kq_logo_1.png" alt="Logo" style="height: 30px; margin-right: 10px;">
+                <span>Kwento Quest</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="http://localhost/KwentoQuest/Content/Home.php">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://localhost/KwentoQuest/Content/Home.php">Trailer</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://localhost/KwentoQuest/Content/Home.php">Characters</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://localhost/KwentoQuest/Content/Home.php">Gameplay</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://localhost/KwentoQuest/Content/Home.php">Install</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="moreDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            More
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="moreDropdown">
+                            <a class="dropdown-item" href="Art.php">Art</a>
+                            <a class="dropdown-item" href="Aboutus.php">About Us</a>
+                            <a class="dropdown-item" href="contact.php">Contact</a>
+                            <a class="dropdown-item" href="news.php">News</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Artworks Section -->
+    <div class="content">
+        <section id="artworks" class="artworks-section">
+            <div class="container text-center">
+                <h1>Artworks</h1>
+                <div class="artworks-gallery">
+                    <a href="http://localhost/KwentoQuest/img/maxine.jpg" data-lightbox="artworks" data-title="Maxine">
+                        <img src="http://localhost/KwentoQuest/img/maxine.jpg" alt="Artwork 1">
+                    </a>
+                    <a href="http://localhost/KwentoQuest/img/mananangal.jpg" data-lightbox="artworks" data-title="Mananangal">
+                        <img src="http://localhost/KwentoQuest/img/mananangal.jpg" alt="Artwork 2">
+                    </a>
+                    <a href="http://localhost/KwentoQuest/img/mangkukulam.jpg" data-lightbox="artworks" data-title="Mangkukulam">
+                        <img src="http://localhost/KwentoQuest/img/mangkukulam.jpg" alt="Artwork 3">
+                    </a>
+                    <a href="http://localhost/KwentoQuest/img/Siokoy.jpg" data-lightbox="artworks" data-title="Siokoy">
+                        <img src="http://localhost/KwentoQuest/img/Siokoy.jpg" alt="Artwork 4">
+                    </a>
+                    <a href="http://localhost/KwentoQuest/img/tikbalang.jpg" data-lightbox="artworks" data-title="Tikbalang">
+                        <img src="http://localhost/KwentoQuest/img/tikbalang.jpg" alt="Artwork 5">
+                    </a>
+                    <a href="http://localhost/KwentoQuest/img/tiyanak.jpg" data-lightbox="artworks" data-title="Tiyanak">
+                        <img src="http://localhost/KwentoQuest/img/tiyanak.jpg" alt="Artwork 6">
+                    </a>
+                    <a href="http://localhost/KwentoQuest/img/weeping.jpg" data-lightbox="artworks" data-title="Weeping">
+                        <img src="http://localhost/KwentoQuest/img/weeping.jpg" alt="Artwork 7">
+                    </a>
+                    <a href="http://localhost/KwentoQuest/img/kapre.jpg" data-lightbox="artworks" data-title="Kapre">
+                        <img src="http://localhost/KwentoQuest/img/kapre.jpg" alt="Artwork 8">
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="myLightbox" class="lightbox">
+        <span class="close">&times;</span>
+        <div class="lightbox-content">
+            <img id="lightboxImg" src="" alt="Artwork">
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Kwento Quest. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Lightbox JS -->
+    <script>
+        // Get the lightbox elements
+        var lightbox = document.getElementById("myLightbox");
+        var lightboxImg = document.getElementById("lightboxImg");
+        var closeBtn = document.getElementsByClassName("close")[0];
+
+        // Open the lightbox
+        function openLightbox(imgSrc) {
+            lightbox.style.display = "block";
+            lightboxImg.src = imgSrc;
+        }
+
+        // Close the lightbox
+        closeBtn.onclick = function() {
+            lightbox.style.display = "none";
+        }
+
+        // Close the lightbox when clicking outside the image
+        window.onclick = function(event) {
+            if (event.target == lightbox) {
+                lightbox.style.display = "none";
+            }
+        }
+
+        // Attach the openLightbox function to each image link
+        document.querySelectorAll('.artworks-gallery a').forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                openLightbox(this.href);
+            });
+        });
+    </script>
+</body>
+</html>
